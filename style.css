@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Edu+TAS+Beginner:wght@500&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+#navbar li {
+    z-index: 10;
+    cursor: pointer !important;
+}
+
+#navbar li:hover a{
+    background-color: rgba(240, 248, 255, 0.336);
+    color: #0049a8;
+}
+
+#navbar li a {
+    border-radius: 20px;
+    padding: 4px 8px;
+    transition: .6s ease;
+    color: white;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.object-fit-contain {
+    object-fit: contain;
+}
+
+.pistol-list > div:nth-child(odd),
+.rifle-list > div:nth-child(odd)
+{
+    background-color: #f8f9fa;
+}
