@@ -2,11 +2,21 @@
 
     
     let locations = ['pistol-list','shotgun-list','hunting-rifle-list','rifle-list','melee-list','ammo-list'];
+
+    // let data = [{"Name":"S&W 657","Price":2200.0,"Category":1,"ID":1},{"Name":"Walther PPK","Price":2900.0,"Category":1,"ID":2},{"Name":"H&K P2000","Price":3300.0,"Category":1,"ID":3},{"Name":"H&K P7M8","Price":3100.0,"Category":1,"ID":4},{"Name":"Remington 870","Price":4800.0,"Category":2,"ID":5},{"Name":"Mossberg 590","Price":5250.0,"Category":2,"ID":6},{"Name":"L42A1","Price":6500.0,"Category":3,"ID":7},{"Name":"H&K 433","Price":12000.0,"Category":4,"ID":8}];
+    // let jsonData = JSON.parse(data);
+    // console.log(jsonData);
     
-    $.get('http://localhost:3000/data',function(data,status){
-        
+    // $.get('http://localhost:3000/data',
+    // let data = [{"Name":"S&W 657","Price":2200.0,"Category":1,"ID":1},{"Name":"Walther PPK","Price":2900.0,"Category":1,"ID":2},{"Name":"H&K P2000","Price":3300.0,"Category":1,"ID":3},{"Name":"H&K P7M8","Price":3100.0,"Category":1,"ID":4},{"Name":"Remington 870","Price":4800.0,"Category":2,"ID":5},{"Name":"Mossberg 590","Price":5250.0,"Category":2,"ID":6},{"Name":"L42A1","Price":6500.0,"Category":3,"ID":7},{"Name":"H&K 433","Price":12000.0,"Category":4,"ID":8}];
+    
+
+    let jsonString = `[{"Name":"S&W 657","Price":2200.0,"Category":1,"ID":1},{"Name":"Walther PPK","Price":2900.0,"Category":1,"ID":2},{"Name":"H&K P2000","Price":3300.0,"Category":1,"ID":3},{"Name":"H&K P7M8","Price":3100.0,"Category":1,"ID":4},{"Name":"Remington 870","Price":4800.0,"Category":2,"ID":5},{"Name":"Mossberg 590","Price":5250.0,"Category":2,"ID":6},{"Name":"L42A1","Price":6500.0,"Category":3,"ID":7},{"Name":"H&K 433","Price":12000.0,"Category":4,"ID":8}]`;
+    let parsedString = JSON.parse(jsonString);
+    
+    function getData(data){
         let location = '';
-        if (status == 'success') {
+        if (typeof(data) !== undefined) {
             data.forEach(element => {
                 switch (element['Category']) {
                     case 1:
@@ -42,11 +52,12 @@
                     default:
                         break;
                 }
-                
             });
             fillEmptys();
         }
-    });
+    };
+
+    getData(parsedString);
 
     function sortItems(location,item){
         $('.'+location).append(`
