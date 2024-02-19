@@ -11,10 +11,18 @@
     // let data = [{"Name":"S&W 657","Price":2200.0,"Category":1,"ID":1},{"Name":"Walther PPK","Price":2900.0,"Category":1,"ID":2},{"Name":"H&K P2000","Price":3300.0,"Category":1,"ID":3},{"Name":"H&K P7M8","Price":3100.0,"Category":1,"ID":4},{"Name":"Remington 870","Price":4800.0,"Category":2,"ID":5},{"Name":"Mossberg 590","Price":5250.0,"Category":2,"ID":6},{"Name":"L42A1","Price":6500.0,"Category":3,"ID":7},{"Name":"H&K 433","Price":12000.0,"Category":4,"ID":8}];
     
 
-    let jsonString = `[{"Name":"S&W 657","Price":2200.0,"Category":1,"ID":1},{"Name":"Walther PPK","Price":2900.0,"Category":1,"ID":2},{"Name":"H&K P2000","Price":3300.0,"Category":1,"ID":3},{"Name":"H&K P7M8","Price":3100.0,"Category":1,"ID":4},{"Name":"Remington 870","Price":4800.0,"Category":2,"ID":5},{"Name":"Mossberg 590","Price":5250.0,"Category":2,"ID":6},{"Name":"L42A1","Price":6500.0,"Category":3,"ID":7},{"Name":"H&K 433","Price":12000.0,"Category":4,"ID":8}]`;
-    let parsedString = JSON.parse(jsonString);
+    //let jsonString = `[{"Name":"Colt Python","Price":2400.0,"Category":1,"ID":1,"ItemID":57},{"Name":"Walther PPK","Price":2900.0,"Category":1,"ID":2,"ItemID":54},{"Name":"H&K P2000","Price":3300.0,"Category":1,"ID":3,"ItemID":47},{"Name":"H&K P7M8","Price":3100.0,"Category":1,"ID":4,"ItemID":48},{"Name":"Remington 870","Price":4800.0,"Category":2,"ID":5,"ItemID":90},{"Name":"Mossberg 590","Price":5250.0,"Category":2,"ID":6,"ItemID":81},{"Name":"L42A1","Price":6500.0,"Category":3,"ID":7,"ItemID":176},{"Name":"M4A1","Price":12000.0,"Category":4,"ID":8,"ItemID":124},{"Name":"Hunting Knife","Price":350.0,"Category":5,"ID":9,"ItemID":12},{"Name":".45 ACP","Price":80.0,"Category":6,"ID":10,"ItemID":501},{"Name":".357 MAG","Price":40.0,"Category":6,"ID":11,"ItemID":510},{"Name":"5.56x45mm","Price":235.0,"Category":6,"ID":12,"ItemID":506},{"Name":"9mm","Price":55.0,"Category":6,"ID":13,"ItemID":500},{"Name":"9x19mm","Price":80.0,"Category":6,"ID":14,"ItemID":504},{"Name":"12-G SLUG","Price":120.0,"Category":6,"ID":15,"ItemID":503}]`;
+    //let parsedString = JSON.parse(jsonString);
     
-    function getData(data){
+    function getData(str){
+        document.getElementById("m_div").innerHTML = '';
+        document.getElementById("sg_div").innerHTML = '';
+        document.getElementById("r_div").innerHTML = '';
+        document.getElementById("h_div").innerHTML = '';
+        document.getElementById("a_div").innerHTML = '';
+        document.getElementById("p_div").innerHTML = '';
+
+        var data = JSON.parse(str);
         let location = '';
         if (typeof(data) !== undefined) {
             data.forEach(element => {
@@ -57,12 +65,12 @@
         }
     };
 
-    getData(parsedString);
+    //getData(parsedString);
 
     function sortItems(location,item){
         $('.'+location).append(`
         <div style="width: 240; height: auto; overflow: hidden;" class="p-4 rounded-3">
-            <img src="./weapons/`+item['Name']+`.png" alt="`+item['Name']+`" style="object-fit: contain !important;" width="200px" max-height="100px">
+            <img src="./weapons/`+item['Name'].replaceAll(' ','_')+`.png" alt="`+item['Name']+`" style="object-fit: contain !important;" width="200px" max-height="100px">
             <h4 class="mt-2">`+item['Name']+`</h4>
             <div class="d-flex justify-content-start align-items-center">
                 <span class="me-3" style='font-weight: 700'><b style='color: #198754'>$</b>`+item['Price']+`</span>
@@ -95,6 +103,7 @@
     function buy(item, price){
         console.log(item);
         console.log(price);
+        mp.trigger('requestWeaponPurchase', item, price);
     }
     
 
