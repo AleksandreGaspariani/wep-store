@@ -1,7 +1,7 @@
 
 
     
-    let locations = ['pistol-list','shotgun-list','hunting-rifle-list','rifle-list','melee-list','ammo-list'];
+    let locations = ['pistol-list','shotgun-list','hunting-rifle-list','rifle-list','melee-list','ammo-list','weapon-attachments-list'];
 
     // let data = [{"Name":"S&W 657","Price":2200.0,"Category":1,"ID":1},{"Name":"Walther PPK","Price":2900.0,"Category":1,"ID":2},{"Name":"H&K P2000","Price":3300.0,"Category":1,"ID":3},{"Name":"H&K P7M8","Price":3100.0,"Category":1,"ID":4},{"Name":"Remington 870","Price":4800.0,"Category":2,"ID":5},{"Name":"Mossberg 590","Price":5250.0,"Category":2,"ID":6},{"Name":"L42A1","Price":6500.0,"Category":3,"ID":7},{"Name":"H&K 433","Price":12000.0,"Category":4,"ID":8}];
     // let jsonData = JSON.parse(data);
@@ -56,7 +56,10 @@
                         sortItems(location,element);
     
                         break;
-
+                    case 7:
+                        location = 'weapon-attachments-list'
+                        sortItems(location,element);
+                        break;
                     default:
                         break;
                 }
